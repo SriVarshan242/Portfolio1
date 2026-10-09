@@ -7,7 +7,8 @@ export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
-
+  const basePath =
+    process.env.NODE_ENV === "production" ? "/Portfolio1" : "";
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -29,7 +30,7 @@ export function Hero() {
         setIsMuted(false);
       }
     };
-    
+
     // Unlock sound on interaction
     window.addEventListener('pointerdown', unlockSound, { once: true });
     window.addEventListener('keydown', unlockSound, { once: true });
