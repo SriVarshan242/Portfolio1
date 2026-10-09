@@ -99,7 +99,7 @@ export function Hero() {
           <button
             onClick={toggleMute}
             aria-label={isMuted ? "Unmute video" : "Mute video"}
-            className="absolute bottom-8 right-8 w-[46px] h-[46px] rounded-full bg-ink text-card flex items-center justify-center transition-transform hover:scale-105 z-20"
+            className="absolute bottom-4 right-4 md:bottom-8 md:right-8 w-[40px] h-[40px] md:w-[46px] md:h-[46px] rounded-full bg-ink text-card flex items-center justify-center transition-transform hover:scale-105 z-20"
           >
             {isMuted ? (
               <svg width="14" height="16" viewBox="0 0 14 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -118,11 +118,11 @@ export function Hero() {
       </div>
 
       {/* Foreground Content */}
-      <div className="absolute inset-x-0 bottom-12 px-[var(--gutter)] z-20 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
+      <div className="absolute inset-x-0 bottom-8 md:bottom-12 px-[var(--gutter)] z-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tighter">
           {PROFILE.role.replace(".", "")}<span className="text-mute">.</span>
         </h2>
-        <div className="flex flex-wrap justify-center md:justify-start items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 md:gap-3">
           <button className="btn-primary shrink-0" onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}>
             Explore work
           </button>

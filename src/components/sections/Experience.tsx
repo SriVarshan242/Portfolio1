@@ -48,9 +48,9 @@ export function Experience() {
   return (
     <section id="experience" className="section-pad bg-card border-y border-line" ref={sectionRef}>
       <div className="content-width max-w-4xl">
-        <div className="flex items-baseline gap-4 mb-24">
+        <div className="flex items-baseline gap-4 mb-12 md:mb-24 flex-wrap">
           <span className="font-mono text-mute">05 — Experience</span>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
             Where I&apos;ve <span className="font-serif italic text-mute">been.</span>
           </h2>
         </div>

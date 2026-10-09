@@ -12,9 +12,9 @@ export function Work() {
   return (
     <section id="work" className="section-pad bg-paper">
       <div className="content-width">
-        <div className="flex items-baseline gap-4 mb-16">
+        <div className="flex items-baseline gap-4 mb-10 md:mb-16 flex-wrap">
           <span className="font-mono text-mute">03 — Work</span>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
             Things I&apos;ve <span className="font-serif italic text-mute">built.</span>
           </h2>
         </div>
@@ -26,8 +26,8 @@ export function Work() {
             return (
               <div
                 key={project.id}
-                className={`relative overflow-hidden rounded-[24px] bg-card border border-line transition-all duration-700 ease-[cubic-bezier(.16,1,.3,1)] flex flex-col md:flex-row cursor-pointer group min-w-0
-                  ${isActive ? 'md:flex-[8] flex-[1_0_auto] min-h-[500px]' : 'md:flex-[1] flex-none h-16 md:h-auto hover:bg-soft'}
+                className={`relative overflow-hidden rounded-[20px] md:rounded-[24px] bg-card border border-line transition-all duration-700 ease-[cubic-bezier(.16,1,.3,1)] flex flex-col md:flex-row cursor-pointer group min-w-0
+                  ${isActive ? 'md:flex-[8] flex-[1_0_auto] min-h-[440px] md:min-h-[auto]' : 'md:flex-[1] flex-none h-14 md:h-auto hover:bg-soft'}
                 `}
                 onClick={() => setActiveId(project.id)}
                 tabIndex={0}

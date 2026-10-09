@@ -14,7 +14,7 @@ export function Certifications() {
           <div className="flex items-baseline gap-4 mb-6">
             <span className="font-mono text-mute">04 — Certifications</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter mb-4">
             Always <span className="font-serif italic text-mute">learning.</span>
           </h2>
           <p className="font-mono text-sm text-ink-2">

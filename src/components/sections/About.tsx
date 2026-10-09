@@ -70,14 +70,14 @@ export function About() {
   return (
     <section id="about" className="section-pad relative z-10 bg-paper">
       <div className="content-width">
-        <div className="flex items-baseline gap-4 mb-16">
+        <div className="flex items-baseline gap-4 mb-10 md:mb-16 flex-wrap">
           <span className="font-mono text-mute">01 — About</span>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
             More about <span className="font-serif italic text-mute">me.</span>
           </h2>
         </div>
 
-        <div ref={ref as any} className={`rv ${isInView ? 'is-in' : ''} grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_320px_minmax(0,1fr)] gap-12 md:gap-8 items-stretch`}>
+        <div ref={ref as any} className={`rv ${isInView ? 'is-in' : ''} grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_300px_minmax(0,1fr)] gap-10 md:gap-8 items-stretch`}>
           
           {/* Left Column */}
           <div className="flex flex-col justify-center gap-6 md:pr-8">
@@ -95,7 +95,7 @@ export function About() {
           {/* Centre: ID Card */}
           <div 
             ref={containerRef}
-            className="relative h-[500px] flex justify-center perspective-[1000px] cursor-pointer"
+            className="relative flex justify-center perspective-[1000px] cursor-pointer" style={{ height: 'clamp(420px, 60vw, 500px)' }}
             onClick={handleFlip}
             onKeyDown={handleKeyDown}
             tabIndex={0}
@@ -107,7 +107,7 @@ export function About() {
             {/* Swinging Card System */}
             <div 
               ref={cardRef}
-              className="relative w-[300px] h-full origin-top transition-transform ease-out duration-100 transform-style-3d"
+              className="relative w-full max-w-[280px] h-full origin-top transition-transform ease-out duration-100 transform-style-3d"
               style={{
                 transform: `rotateZ(${rotation.rz}deg) rotateY(${rotation.rx}deg)`
               }}

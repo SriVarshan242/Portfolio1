@@ -51,9 +51,9 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-card pt-32 pb-8 px-[var(--gutter)] flex flex-col min-h-svh">
+    <section id="contact" className="bg-card pt-24 md:pt-32 pb-8 px-[var(--gutter)] flex flex-col min-h-svh w-full overflow-hidden">
       
-      <div className="flex-1 flex flex-col justify-center max-w-5xl mx-auto w-full relative">
+      <div className="flex-1 flex flex-col justify-center max-w-5xl mx-auto w-full relative min-w-0">
         
         {/* Spinning Badge */}
         <div className="absolute -top-12 md:top-0 right-0 w-24 h-24 md:w-32 md:h-32 pointer-events-none opacity-50 hidden sm:block">
@@ -65,26 +65,27 @@ export function Contact() {
           </svg>
         </div>
 
-        <h2 className="text-[12vw] md:text-[8vw] font-bold tracking-tighter leading-[0.9] mb-16 select-none cursor-default">
+        <h2 className="text-[clamp(28px,8vw,100px)] font-bold tracking-tighter leading-[0.9] mb-10 md:mb-16 select-none cursor-default">
           <HoppingText text="Let's build" />
           <br />
           <span className="font-serif italic text-mute"><HoppingText text="something together." /></span>
         </h2>
 
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-12 border-b border-line pb-12 mb-12">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-12 border-b border-line pb-8 md:pb-12 mb-8 md:mb-12 min-w-0">
           
-          <div className="flex flex-col items-start gap-4">
+          <div className="flex flex-col items-start gap-3 min-w-0 w-full md:w-auto">
             <span className="font-mono text-sm text-mute uppercase tracking-widest">Get in touch</span>
-            <div className="flex items-center gap-4 group relative">
+            {/* Mobile: email on its own line, copy below */}
+            <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 w-full md:w-auto min-w-0">
               <a 
                 href={`mailto:${PROFILE.email}`} 
-                className="text-3xl md:text-5xl font-bold tracking-tight underline decoration-2 underline-offset-8 decoration-line hover:decoration-ink transition-colors"
+                className="text-xl sm:text-2xl md:text-5xl font-bold tracking-tight underline decoration-2 underline-offset-8 decoration-line hover:decoration-ink transition-colors break-all min-w-0"
               >
                 {PROFILE.email}
               </a>
               <button 
                 onClick={handleCopy}
-                className={`px-3 py-1.5 rounded-full text-xs font-mono border transition-all ${copied ? 'bg-ink text-card border-ink' : 'bg-paper text-ink border-line hover:border-ink'}`}
+                className={`self-start md:self-auto px-3 py-1.5 rounded-full text-xs font-mono border transition-all shrink-0 ${copied ? 'bg-ink text-card border-ink' : 'bg-paper text-ink border-line hover:border-ink'}`}
                 aria-live="polite"
               >
                 {copied ? "Copied ✓" : "Copy"}

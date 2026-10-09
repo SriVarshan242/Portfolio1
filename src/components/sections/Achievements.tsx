@@ -85,15 +85,15 @@ export function Achievements() {
 
   return (
     // Make section height 300vh to allow for enough scroll distance
-    <section id="achievements" ref={containerRef} className="relative h-[300vh] bg-paper">
+    <section id="achievements" ref={containerRef} className="relative h-[250vh] md:h-[300vh] bg-paper">
       
-      <div className="sticky top-0 h-svh w-full overflow-hidden flex flex-col">
+      <div className="sticky top-0 h-svh w-full overflow-x-hidden flex flex-col">
         
         {/* Header */}
         <div className="pt-24 px-[var(--gutter)] flex-shrink-0 relative z-10">
           <div className="flex items-baseline gap-4 mb-4">
             <span className="font-mono text-mute">06 — Achievements</span>
-            <h2 className="text-5xl font-bold tracking-tighter">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter">
               Always <span className="font-serif italic text-mute">learning.</span>
             </h2>
           </div>
@@ -134,7 +134,7 @@ export function Achievements() {
               return (
                 <div 
                   key={i} 
-                  className={`shrink-0 w-[clamp(340px,40vw,540px)] h-[clamp(260px,36vh,310px)] bg-card rounded-[28px] p-8 flex flex-col justify-between transition-all duration-500
+                  className={`shrink-0 w-[clamp(280px,85vw,540px)] h-[clamp(220px,36vh,310px)] bg-card rounded-[28px] p-6 md:p-8 flex flex-col justify-between transition-all duration-500
                     ${isActive ? '-translate-y-3 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)]' : 'shadow-sm border border-line'}
                   `}
                 >
@@ -161,7 +161,7 @@ export function Achievements() {
             })}
 
             {/* End Card */}
-            <div className="shrink-0 w-[clamp(340px,40vw,540px)] h-[clamp(260px,36vh,310px)] flex items-center justify-center">
+            <div className="shrink-0 w-[clamp(280px,85vw,540px)] h-[clamp(220px,36vh,310px)] flex items-center justify-center">
               <span className="text-4xl font-serif italic text-mute">and counting →</span>
             </div>
           </div>

@@ -26,9 +26,9 @@ export function Skills() {
   return (
     <section id="skills" className="section-pad bg-card border-y border-line">
       <div className="content-width">
-        <div className="flex items-baseline gap-4 mb-16">
+        <div className="flex items-baseline gap-3 mb-10 md:mb-16 flex-wrap">
           <span className="font-mono text-mute">02 — Skills</span>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
             Periodic table of my <span className="font-serif italic text-mute">stack.</span>
           </h2>
         </div>
@@ -58,7 +58,7 @@ export function Skills() {
             </div>
 
             {/* Periodic Grid */}
-            <div className="grid grid-cols-4 md:grid-cols-6 xl:grid-cols-8 gap-3">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-6 xl:grid-cols-8 gap-2 md:gap-3">
               {allSkills.map((skill, index) => {
                 const row = Math.floor(index / 8);
                 const col = index % 8;
@@ -100,17 +100,10 @@ export function Skills() {
             </div>
           </div>
 
-          {/* Inspector Panel */}
-          <div ref={inspectorRef} className="w-full lg:w-[320px] lg:sticky lg:top-[120px] shrink-0 border border-line rounded-3xl bg-paper p-8 min-h-[400px] flex flex-col justify-between transition-all">
+          {/* Inspector Panel — Desktop only */}
+          <div ref={inspectorRef} className="hidden lg:flex w-full lg:w-[320px] lg:sticky lg:top-[120px] shrink-0 border border-line rounded-3xl bg-paper p-8 min-h-[400px] flex-col justify-between transition-all">
             {hoveredSkill ? (
               <div className="animate-in fade-in zoom-in-95 duration-300 flex flex-col h-full relative">
-                <button 
-                  className="lg:hidden absolute -top-4 -right-4 w-8 h-8 rounded-full bg-soft border border-line flex items-center justify-center text-mute"
-                  onClick={() => setHoveredSkill(null)}
-                  aria-label="Close details"
-                >
-                  ✕
-                </button>
                 <div>
                   <div className="flex justify-between items-start mb-8">
                     <span className="font-mono text-sm text-mute uppercase">{hoveredSkill.family}</span>
@@ -145,6 +138,39 @@ export function Skills() {
               </div>
             )}
           </div>
+
+          {/* Mobile Skill Detail — shown below grid when a skill is tapped */}
+          {hoveredSkill && (
+            <div ref={inspectorRef} className="lg:hidden w-full border border-line rounded-2xl bg-paper p-5 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-300 relative">
+              <button 
+                className="absolute top-3 right-3 w-7 h-7 rounded-full bg-soft border border-line flex items-center justify-center text-mute text-sm"
+                onClick={() => setHoveredSkill(null)}
+                aria-label="Close details"
+              >
+                ✕
+              </button>
+              <div className="flex items-center gap-4">
+                <TechLogo name={hoveredSkill.name} size={48} />
+                <div>
+                  <h3 className="text-xl font-bold tracking-tighter">{hoveredSkill.name}</h3>
+                  <span className="font-mono text-xs text-mute uppercase">{hoveredSkill.family}</span>
+                </div>
+              </div>
+              {getRelatedProjects(hoveredSkill.name).length > 0 && (
+                <div className="border-t border-line pt-3">
+                  <p className="font-mono text-xs text-mute uppercase mb-2">Used in</p>
+                  <div className="flex flex-wrap gap-2">
+                    {getRelatedProjects(hoveredSkill.name).map(p => (
+                      <span key={p.id} className="text-xs px-2 py-1 rounded-full border border-line text-ink-2">{p.title}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {getRelatedProjects(hoveredSkill.name).length === 0 && (
+                <p className="text-sm text-ink-2 italic">Foundation / General</p>
+              )}
+            </div>
+          )}
 
         </div>
       </div>
