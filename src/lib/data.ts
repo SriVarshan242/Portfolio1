@@ -8,7 +8,7 @@ export const PROFILE = {
   location: "Coimbatore, India",
   resumeSummary: "Computer Science Engineering student with a strong foundation in C++, Java, Data Structures and Algorithms, and full-stack development. Experienced in developing web applications and AI-powered solutions using React, Node.js, Express.js, MongoDB, and Machine Learning. Passionate about problem-solving, learning emerging technologies, and building scalable applications that address real-world challenges.",
   github: "https://github.com/SriVarshan242",
-  linkedin: "http://www.linkedin.com/in/sri-varshan-606595284",
+  linkedin: "https://www.linkedin.com/in/sri-varshan-b-606595284?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   resumePath: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/resume.pdf`
 };
 
