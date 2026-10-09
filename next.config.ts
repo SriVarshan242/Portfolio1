@@ -7,12 +7,11 @@ const nextConfig: NextConfig = {
   output: "export",
   ...(isProduction && {
     basePath: "/Portfolio1",
+    assetPrefix: "/Portfolio1",
   }),
   images: {
     unoptimized: true,
   },
-  cacheComponents: true,
-  partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {
