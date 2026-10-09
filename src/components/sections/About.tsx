@@ -81,7 +81,7 @@ export function About() {
           <div className="flex flex-col justify-center gap-6 md:pr-8">
             <h3 className="text-3xl font-bold tracking-tighter">Hi, I&apos;m {PROFILE.name.split(' ')[0]}.</h3>
             <p className="text-lg text-ink-2 leading-relaxed">
-              I am a {PROFILE.role} with a strong foundation in problem-solving and full-stack development. I enjoy building seamless, user-centered applications that solve real-world problems.
+              {PROFILE.resumeSummary}
             </p>
             <div className="flex flex-wrap gap-3 mt-4">
               <a href={PROFILE.resumePath} download className="btn-secondary text-sm py-2 px-4">Résumé</a>
@@ -126,7 +126,7 @@ export function About() {
                 <div className="p-6 flex flex-col items-center">
                   <div className="w-[128px] h-[156px] rounded-lg border-4 border-paper overflow-hidden bg-soft shadow-inner relative group">
                     {/* Placeholder for portrait */}
-                    <img src="/portrait-bust.webp" alt="Portrait" className="w-full h-full object-cover grayscale contrast-125 transition-transform duration-500 group-hover:scale-110" />
+                    <img src="/portrait-bust.webp" alt="Portrait" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent pointer-events-none" />
                   </div>
                   <h4 className="mt-4 text-2xl font-bold tracking-tighter">{PROFILE.name}</h4>

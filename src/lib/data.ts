@@ -6,7 +6,7 @@ export const PROFILE = {
   phone: "+91 8778017360",
   phoneHref: "tel:+918778017360",
   location: "Coimbatore, India",
-  resumeSummary: "", // Will be added later by user
+  resumeSummary: "Computer Science Engineering student with a strong foundation in C++, Java, Data Structures and Algorithms, and full-stack development. Experienced in developing web applications and AI-powered solutions using React, Node.js, Express.js, MongoDB, and Machine Learning. Passionate about problem-solving, learning emerging technologies, and building scalable applications that address real-world challenges.",
   github: "https://github.com/SriVarshan242",
   linkedin: "http://www.linkedin.com/in/sri-varshan-606595284",
   resumePath: "/resume.pdf"
@@ -16,6 +16,7 @@ export const NAV = [
   { label: "About", id: "about" },
   { label: "Skills", id: "skills" },
   { label: "Work", id: "work" },
+  { label: "Certifications", id: "certifications" },
   { label: "Experience", id: "experience" },
   { label: "Achievements", id: "achievements" },
   { label: "Contact", id: "contact" }
@@ -157,11 +158,28 @@ export const PROJECTS = [
 
 export const ACHIEVEMENTS = [
   {
+    title: "LeetCode Problem-Solving",
+    detail: "102-day streak, 7 badges",
+    logo: "LeetCode",
+    number: "337"
+  },
+  {
     title: "Finalist",
     detail: "GDGC Hackathon 2025",
-    logo: "GDGC", // placeholder
-    number: "1" // to count up to, as per prompt
+    logo: "GDGC",
+    number: "1"
   }
 ];
 
-export const CERTIFICATIONS = [];
+export const CERTIFICATIONS = [
+  { title: "Artificial Intelligence Primer", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_auth_0134898743771545602_shared" },
+  { title: "AI-Accelerated Machine Learning Techniques", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_auth_014493256429469696119669" },
+  { title: "Introduction to Deep Learning", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_auth_012782105116811264219_shared" },
+  { title: "Introduction to Natural Language Processing", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_auth_012776556362055680278_shared" },
+  { title: "Computer Vision 101", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_auth_012952007096016896334_shared" },
+  { title: "Introduction to Data Science", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_12666306402263577000_shared" },
+  { title: "AWS Certified Developer – Associate", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_auth_0132945814110699529124_shared" },
+  { title: "Spring 5 Basics with Spring Boot", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_auth_01296689056211763272_shared" },
+  { title: "Hibernate Framework – Basics", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_3351877365166293000_shared" },
+  { title: "Graph Data Structures: Understanding Graphs", issuer: "Infosys Springboard", link: "https://infyspringboard.onwingspan.com/app/toc/lex_auth_01350159577912934413159" },
+];

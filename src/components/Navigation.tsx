@@ -2,13 +2,15 @@
 
 import { useState, useEffect, useRef } from "react";
 import { NAV, PROFILE } from "@/lib/data";
-import { scrollToTarget, useScrollProgress } from "@/lib/hooks"; // I'll add useScrollProgress to hooks
+import { useScrollProgress } from "@/lib/hooks";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const progress = useScrollProgress();
+  const navRef = useRef<HTMLElement>(null);
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +50,21 @@ export function Navigation() {
     }
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (activeId && navRef.current) {
+      const activeEl = navRef.current.querySelector(`[data-id="${activeId}"]`) as HTMLElement;
+      if (activeEl) {
+        setPillStyle({
+          left: activeEl.offsetLeft,
+          width: activeEl.offsetWidth,
+          opacity: 1
+        });
+      }
+    } else {
+      setPillStyle(prev => ({ ...prev, opacity: 0 }));
+    }
+  }, [activeId, scrolled]);
+
   const handleNav = (id: string) => {
     setMenuOpen(false);
     // Let lenis handle smooth scroll by giving it a moment if menu was open
@@ -76,10 +93,11 @@ export function Navigation() {
         </div>
 
         {/* Desktop Nav */}
-        <nav className={`hidden md:flex relative pointer-events-auto items-center p-1 rounded-full transition-all duration-500 ${scrolled ? 'bg-white/70 backdrop-blur-md shadow-sm border border-line' : ''}`}>
+        <nav ref={navRef} className={`hidden md:flex relative pointer-events-auto items-center p-1 rounded-full transition-all duration-500 ${scrolled ? 'bg-white/70 backdrop-blur-md shadow-sm border border-line' : ''}`}>
           {NAV.map((item) => (
             <button
               key={item.id}
+              data-id={item.id}
               onClick={() => handleNav(item.id)}
               className={`relative px-5 py-2 text-sm font-medium z-10 transition-colors ${activeId === item.id ? 'text-white' : 'text-ink-2 hover:text-ink'}`}
             >
@@ -89,9 +107,9 @@ export function Navigation() {
           <div 
             className="absolute top-1 bottom-1 bg-ink rounded-full transition-all duration-300 ease-out z-0"
             style={{
-              left: activeId ? `${NAV.findIndex(i => i.id === activeId) * (100 / NAV.length)}%` : '0%', // Simplified active pill positioning, will refine in style
-              width: `${100 / NAV.length}%`,
-              opacity: activeId ? 1 : 0
+              left: `${pillStyle.left}px`,
+              width: `${pillStyle.width}px`,
+              opacity: pillStyle.opacity
             }}
           />
         </nav>

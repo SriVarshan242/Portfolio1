@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ScrollProvider } from "@/lib/scroll";
@@ -26,6 +26,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Sri Varshan B — Full Stack Developer",
   description: "Personal portfolio of Sri Varshan B, Full Stack Developer and UI/UX Designer.",
+};
+
+export const viewport: Viewport = {
   themeColor: "#f4f2ee",
 };
 

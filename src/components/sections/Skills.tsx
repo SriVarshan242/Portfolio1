@@ -72,16 +72,18 @@ export function Skills() {
                     <button
                       className={`w-full aspect-square p-2 border flex flex-col justify-between items-start text-left transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2
                         ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-                        ${isDimmed ? 'opacity-30 border-line bg-transparent grayscale' : 'border-line bg-paper hover:bg-white hover:shadow-md hover:border-mute hover:scale-105 z-10'}
+                        ${isDimmed ? 'opacity-30 border-line bg-transparent grayscale' : 'border-line bg-paper z-10'}
+                        ${hoveredSkill?.name === skill.name && !isDimmed ? 'bg-ink text-card border-ink scale-105 shadow-xl shadow-ink/20' : 'hover:bg-white hover:shadow-md hover:border-mute hover:scale-105'}
                       `}
                       style={{ transitionDelay: isInView ? `${delay}s` : '0s' }}
                       onMouseEnter={() => setHoveredSkill(skill)}
                       onFocus={() => setHoveredSkill(skill)}
+                      onClick={() => setHoveredSkill(skill)}
                     >
-                      <span className="font-mono text-[10px] text-mute">{skill.number}</span>
+                      <span className={`font-mono text-[10px] ${hoveredSkill?.name === skill.name && !isDimmed ? 'text-card/70' : 'text-mute'}`}>{skill.number}</span>
                       <div className="flex flex-col w-full">
                         <span className="text-xl md:text-2xl font-bold tracking-tighter leading-none">{skill.symbol}</span>
-                        <span className="text-[10px] md:text-xs text-mute mt-1 truncate w-full">{skill.name}</span>
+                        <span className={`text-[10px] md:text-xs mt-1 truncate w-full ${hoveredSkill?.name === skill.name && !isDimmed ? 'text-card/70' : 'text-mute'}`}>{skill.name}</span>
                       </div>
                     </button>
                   </div>
