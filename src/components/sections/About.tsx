@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import { PROFILE, EDUCATION, EXPERIENCE } from "@/lib/data";
 import { useInView } from "@/lib/hooks";
-import Image from "next/image";
 
 export function About() {
   const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true } as any);
@@ -66,6 +65,8 @@ export function About() {
     }
   };
 
+  const basePath = process.env.NODE_ENV === "production" ? "/Portfolio1" : "";
+  
   return (
     <section id="about" className="section-pad relative z-10 bg-paper">
       <div className="content-width">
@@ -126,7 +127,7 @@ export function About() {
                 </div>
                 <div className="p-6 flex flex-col items-center">
                   <div className="w-[128px] h-[156px] rounded-lg border-4 border-paper overflow-hidden bg-soft shadow-inner relative group">
-                    <Image src="/portrait-bust.webp" alt="Portrait" fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <img src={`${basePath}/portrait-bust.webp`} alt="Portrait" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent pointer-events-none" />
                   </div>
                   <h4 className="mt-4 text-2xl font-bold tracking-tighter">{PROFILE.name}</h4>
