@@ -13,28 +13,22 @@ export function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Try autoplay
-    video.play().then(() => {
-      setIsPlaying(true);
-    }).catch(() => {
-      video.muted = true;
+    const attemptPlay = () => {
       video.play().then(() => {
         setIsPlaying(true);
-        setIsMuted(true);
-      }).catch(() => console.log("Autoplay blocked entirely"));
-    });
-
-    const unlockSound = () => {
-      if (video.muted) {
-        video.muted = false;
-        setIsMuted(false);
-      }
+        setIsMuted(video.muted);
+      }).catch(() => {
+        video.muted = true;
+        video.play().then(() => {
+          setIsPlaying(true);
+          setIsMuted(true);
+        }).catch(() => {
+          setIsPlaying(false);
+        });
+      });
     };
 
-    // Unlock sound on interaction
-    window.addEventListener('pointerdown', unlockSound, { once: true });
-    window.addEventListener('keydown', unlockSound, { once: true });
-    window.addEventListener('touchend', unlockSound, { once: true });
+    attemptPlay();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,25 +47,34 @@ export function Hero() {
     observer.observe(video);
 
     return () => {
-      window.removeEventListener('pointerdown', unlockSound);
-      window.removeEventListener('keydown', unlockSound);
-      window.removeEventListener('touchend', unlockSound);
       observer.disconnect();
     };
   }, []);
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.muted) {
+      video.muted = false;
+      video.play().then(() => {
+        setIsMuted(false);
+        setIsPlaying(true);
+      }).catch(() => {
+        video.muted = true;
+        setIsMuted(true);
+      });
+    } else {
+      video.muted = true;
+      setIsMuted(true);
     }
   };
 
   return (
     <section id="hero" className="relative w-full h-[min(96svh,1040px)] flex items-center justify-center overflow-hidden">
       {/* Background First Name */}
-      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0">
-        <h1 className="text-[20vw] font-bold tracking-tighter text-transparent" style={{ WebkitTextStroke: '1px var(--line)' }}>
+      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0 overflow-hidden">
+        <h1 className="text-[20vw] font-bold tracking-tighter text-transparent whitespace-nowrap" style={{ WebkitTextStroke: '1px var(--line)' }}>
           {PROFILE.firstName}
         </h1>
       </div>
@@ -81,7 +84,7 @@ export function Hero() {
         <div className="relative w-full h-full max-h-[1040px] flex items-center justify-center">
           <video
             ref={videoRef}
-            className="h-full aspect-[768/960] object-cover mix-blend-multiply"
+            className="h-full max-w-full aspect-[768/960] object-cover mix-blend-multiply"
             loop
             playsInline
             preload="auto"
@@ -115,18 +118,18 @@ export function Hero() {
       </div>
 
       {/* Foreground Content */}
-      <div className="absolute inset-x-0 bottom-12 px-[var(--gutter)] z-20 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="absolute inset-x-0 bottom-12 px-[var(--gutter)] z-20 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">
           {PROFILE.role.replace(".", "")}<span className="text-mute">.</span>
         </h2>
-        <div className="flex items-center gap-3">
-          <button className="btn-primary" onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}>
+        <div className="flex flex-wrap justify-center md:justify-start items-center gap-3">
+          <button className="btn-primary shrink-0" onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}>
             Explore work
           </button>
-          <button className="btn-secondary" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+          <button className="btn-secondary shrink-0" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             Let&apos;s talk
           </button>
-          <a href={PROFILE.resumePath} download className="btn-secondary">
+          <a href={PROFILE.resumePath} download className="btn-secondary shrink-0">
             Résumé ↓
           </a>
         </div>

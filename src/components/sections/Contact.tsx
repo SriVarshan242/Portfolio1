@@ -26,7 +26,23 @@ export function Contact() {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(PROFILE.email);
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(PROFILE.email);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = PROFILE.email;
+        textArea.style.position = "absolute";
+        textArea.style.left = "-999999px";
+        document.body.prepend(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+        } catch (error) {
+          console.error(error);
+        } finally {
+          textArea.remove();
+        }
+      }
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {

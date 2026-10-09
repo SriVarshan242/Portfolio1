@@ -176,20 +176,20 @@ export function About() {
               <h4 className="font-mono text-sm text-mute mb-4">Quick facts</h4>
               <ul className="space-y-4">
                 <li className="flex gap-4 border-b border-line pb-3">
-                  <span className="text-mute w-24">Location</span>
+                  <span className="text-mute w-24 shrink-0">Location</span>
                   <span className="font-medium text-ink-2">{PROFILE.location}</span>
                 </li>
                 <li className="flex gap-4 border-b border-line pb-3">
-                  <span className="text-mute w-24">Education</span>
+                  <span className="text-mute w-24 shrink-0">Education</span>
                   <span className="font-medium text-ink-2">B.E. CSE</span>
                 </li>
                 <li className="flex gap-4 border-b border-line pb-3">
-                  <span className="text-mute w-24">Current</span>
+                  <span className="text-mute w-24 shrink-0">Current</span>
                   <span className="font-medium text-ink-2">Student & Developer</span>
                 </li>
                 <li className="flex gap-4 border-b border-line pb-3">
-                  <span className="text-mute w-24">Email</span>
-                  <a href={`mailto:${PROFILE.email}`} className="font-medium text-ink-2 hover:text-ink underline decoration-line underline-offset-4">{PROFILE.email}</a>
+                  <span className="text-mute w-24 shrink-0">Email</span>
+                  <a href={`mailto:${PROFILE.email}`} className="font-medium text-ink-2 hover:text-ink underline decoration-line underline-offset-4 break-all">{PROFILE.email}</a>
                 </li>
               </ul>
             </div>
