@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { SKILL_GROUPS, PROJECTS } from "@/lib/data";
 import { useInView } from "@/lib/hooks";
 import { TechLogo, isBrand } from "@/components/ui/TechLogo";
@@ -11,6 +11,7 @@ export function Skills() {
   const { ref, isInView } = useInView({ threshold: 0.1, triggerOnce: true } as any);
   const [activeFamily, setActiveFamily] = useState<string | null>(null);
   const [hoveredSkill, setHoveredSkill] = useState<SkillInfo | null>(null);
+  const inspectorRef = useRef<HTMLDivElement>(null);
 
   const allSkills = SKILL_GROUPS.flatMap(g => g.skills);
   
@@ -78,7 +79,14 @@ export function Skills() {
                       style={{ transitionDelay: isInView ? `${delay}s` : '0s' }}
                       onMouseEnter={() => setHoveredSkill(skill)}
                       onFocus={() => setHoveredSkill(skill)}
-                      onClick={() => setHoveredSkill(skill)}
+                      onClick={() => {
+                        setHoveredSkill(prev => prev?.name === skill.name ? null : skill);
+                        if (window.innerWidth < 1024 && inspectorRef.current) {
+                          setTimeout(() => {
+                            inspectorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                          }, 50);
+                        }
+                      }}
                     >
                       <span className={`font-mono text-[10px] ${hoveredSkill?.name === skill.name && !isDimmed ? 'text-card/70' : 'text-mute'}`}>{skill.number}</span>
                       <div className="flex flex-col w-full">
@@ -93,9 +101,16 @@ export function Skills() {
           </div>
 
           {/* Inspector Panel */}
-          <div className="w-full lg:w-[320px] lg:sticky lg:top-[120px] shrink-0 border border-line rounded-3xl bg-paper p-8 min-h-[400px] flex flex-col justify-between transition-all">
+          <div ref={inspectorRef} className="w-full lg:w-[320px] lg:sticky lg:top-[120px] shrink-0 border border-line rounded-3xl bg-paper p-8 min-h-[400px] flex flex-col justify-between transition-all">
             {hoveredSkill ? (
-              <div className="animate-in fade-in zoom-in-95 duration-300 flex flex-col h-full">
+              <div className="animate-in fade-in zoom-in-95 duration-300 flex flex-col h-full relative">
+                <button 
+                  className="lg:hidden absolute -top-4 -right-4 w-8 h-8 rounded-full bg-soft border border-line flex items-center justify-center text-mute"
+                  onClick={() => setHoveredSkill(null)}
+                  aria-label="Close details"
+                >
+                  ✕
+                </button>
                 <div>
                   <div className="flex justify-between items-start mb-8">
                     <span className="font-mono text-sm text-mute uppercase">{hoveredSkill.family}</span>

@@ -19,14 +19,14 @@ export function Work() {
           </h2>
         </div>
 
-        <div ref={ref as any} className={`rv ${isInView ? 'is-in' : ''} flex flex-col md:flex-row h-auto md:h-[min(78svh,600px)] gap-2`}>
+        <div ref={ref as any} className={`rv ${isInView ? 'is-in' : ''} flex flex-col md:flex-row h-auto md:h-[min(78svh,600px)] gap-2 min-w-0`}>
           {PROJECTS.map((project) => {
             const isActive = activeId === project.id;
             
             return (
               <div
                 key={project.id}
-                className={`relative overflow-hidden rounded-[24px] bg-card border border-line transition-all duration-700 ease-[cubic-bezier(.16,1,.3,1)] flex flex-col md:flex-row cursor-pointer group
+                className={`relative overflow-hidden rounded-[24px] bg-card border border-line transition-all duration-700 ease-[cubic-bezier(.16,1,.3,1)] flex flex-col md:flex-row cursor-pointer group min-w-0
                   ${isActive ? 'md:flex-[8] flex-[1_0_auto] min-h-[500px]' : 'md:flex-[1] flex-none h-16 md:h-auto hover:bg-soft'}
                 `}
                 onClick={() => setActiveId(project.id)}
@@ -59,15 +59,15 @@ export function Work() {
                 </div>
 
                 {/* Open Panel Content */}
-                <div className={`w-full h-full flex flex-col md:flex-row transition-opacity duration-500 delay-200 ${isActive ? 'opacity-100' : 'opacity-0 absolute'}`}>
+                <div className={`w-full h-full flex flex-col md:flex-row transition-opacity duration-500 delay-200 min-w-0 ${isActive ? 'opacity-100' : 'opacity-0 absolute'}`}>
                   
                   {/* Left Side: Info */}
-                  <div className="flex-1 p-8 md:p-12 flex flex-col overflow-y-auto">
+                  <div className="flex-1 p-6 md:p-12 flex flex-col overflow-y-auto min-w-0">
                     <div className="flex items-baseline gap-4 mb-4">
                       <span className="font-mono text-sm text-ink px-2 py-1 bg-soft rounded-md">{project.index}</span>
                       <span className="font-mono text-sm text-mute uppercase tracking-widest">{project.kicker}</span>
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-bold tracking-tighter mb-6">{project.title}</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold tracking-tighter mb-6 break-words hyphens-auto">{project.title}</h3>
                     <p className="text-ink-2 leading-relaxed mb-8">{project.description}</p>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 mb-8">
