@@ -86,10 +86,10 @@ export function Hero() {
             playsInline
             preload="auto"
             muted={isMuted}
-            poster="/portrait-bust.webp"
+            poster={`${basePath}/portrait-bust.webp`}
           >
-            <source src="/hero/hero.webm" type="video/webm" />
-            <source src="/hero/hero.mp4" type="video/mp4" />
+            <source src={`${basePath}/hero/hero.webm`} type="video/webm" />
+            <source src={`${basePath}/hero/hero.mp4`} type="video/mp4" />
           </video>
 
           {/* Sound Toggle Button */}
